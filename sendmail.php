@@ -10,13 +10,13 @@ $mail->Port=587;
 $mail->SMTPAuth=true;
 $mail->SMTPSecure='tls';
 
-$mail->Username='divyapomendkar@gmail.com';
-$mail->Password="dsp@11054";
+$mail->Username='/*your mailid*/';
+$mail->Password="/*password*/";
 
-$mail->setFrom('divyapomendkar@gmail.com');
+$mail->setFrom('/*your mailid*/');
 
-$mail->addAddress('divyapomendkar@gmail.com');
-$mail->addReplyTo('divyapomendkar@gmail.com');
+$mail->addAddress('/*recievers mail id*/');
+$mail->addReplyTo('/*your mailid*/');
 
 $mail->isHtml(true);
 $mail->Subject="Sending mails via php";
