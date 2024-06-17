@@ -1,39 +1,55 @@
-<?php
-session_start();
-////////////////Login
-$password1 = $_POST['password'];
-$email=$_POST['email'];
+<?php 
+include('UI_Components/header.php'); 
 
-$_SESSION["emailuser"] = $email ;
-
-
-$servername = "localhost";
-$username = "root";
-$password= "";
-$dbname="collegewtl";
-
-$conn = mysqli_connect($servername, $username, $password, $dbname);
-// Check connection
-if (!$conn) {
-    die("Connection failed: " . mysqli_connect_error());
-}
-
-$sql="SELECT id,email,pwd,verify FROM createlog ";
-
-$result = $conn->query($sql);
-
-if($result->num_rows>0)
+if(isset($_SESSION['user']))
 {
-        while($row=$result->fetch_assoc())
-        {
-            if($row["email"]==$email&&$row["pwd"]==$password1&&$row["verify"]=="Yes")
-            {
-            
-                $_SESSION["userid1"]=$row["id"];
-                
-                header("Location:/practice/wtlpro/convo.php");
-                
-            }
-            
-        }
+    $_SESSION['message'] = "You are already logged in";
+    header('Location: index.php');
+    exit();
 }
+?>
+    <div class="ph-5">
+    
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <?php
+                    if(isset($_SESSION['message']))  
+                    { 
+                        ?>
+                        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                            <strong>Hey!</strong> <?= $_SESSION['message']; ?>.
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                        <?php
+                        unset($_SESSION['message']);
+                    }
+                    ?>
+                    <div class="card">
+                        <div class="card-header">
+                            <h4>Login</h4>
+                        </div>
+                        <div class="card-body">
+                            <form action="Features/AuthenticateLogin.php" method="POST">
+                                
+                                <div class="mb-3">
+                                    <label for="exampleInputEmail1" class="form-label">Email address</label>
+                                    <input type="email" name="email" class="form-control" placeholder="Enter your Email Address" id="email_address" aria-describedby="emailHelp">
+                                    
+                                </div>
+                                <div class="mb-3">
+                                    <label for="exampleInputPassword1" class="form-label">Password</label>
+                                    <input type="password" name="password" class="form-control" placeholder="Enter your password" id="exampleInputPassword1">
+                                </div>
+                               
+                                <button type="submit" name="login_btn" class="btn btn-primary">Login</button>
+
+                                </div>
+                            </form>
+                        </div>
+                    </div>    
+                    
+                <div>
+            <div>
+        <div>
+    </div>    

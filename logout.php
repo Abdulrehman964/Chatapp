@@ -1,4 +1,12 @@
 <?php
-    unset($_SESSION['userid1']);
-    header("Location:/practice/wtlpro/Login.html");
+session_start();
+if(isset($_SESSION['user']))
+{
+    unset($_SESSION['user']);
+    unset($_SESSION['user_details']);
+    
+    $_SESSION['message'] = "Logged out successfully";
+}
+header('Location: Login.php');
+
 ?>
